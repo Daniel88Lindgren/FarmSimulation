@@ -6,7 +6,8 @@ Id: 4 -- Specie goat -- Eats: corn
 Id: 5 -- Specie horse -- Eats: carrot
 Id: 6 -- Specie duck -- Eats: snail
 Crops: 
-Id: 1 -- Crop type: corn -- Quantity: 1
-Id: 2 -- Crop type: carrot -- Quantity: 1
-Id: 3 -- Crop type: snail -- Quantity: 1
-Id: 4 -- Crop type: grass -- Quantity: 1
+Id: 1 -- Crop type: corn -- Quantity: 0
+Id: 2 -- Crop type: carrot -- Quantity: 0
+Id: 3 -- Crop type: snail -- Quantity: 8
+Id: 4 -- Crop type: grass -- Quantity: 0
+Id: 5 -- Crop type: snial -- Quantity: 10

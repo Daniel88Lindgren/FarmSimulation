@@ -114,6 +114,16 @@ import java.util.Scanner;
             System.out.println("Animal not found");
         }
         else{
+            if (animalName.equalsIgnoreCase("pig")){
+                for (Crop crop : crops){
+                    if (crop.getCropQuantity() > 0){
+                        crop.decrementCropQuantity();
+                        System.out.println("The pig has been fed with "+crop.getName()+" and are now happy!");
+                        return;
+                    }
+                }
+                System.out.println("There are no crops available for the pig");
+            }
             for (Crop crop : crops){//Loops through crops to find matching feed type AND if the crop quantity is greater than 0, then message accepted feed
                 if (crop.getName().equals(feedType) && crop.getCropQuantity() > 0){
                     crop.decrementCropQuantity();
@@ -233,7 +243,7 @@ import java.util.Scanner;
 
 
 
-     public void menu(){//This is where the user will make all actions
+     public void menu(){//This is where the user enter the program and will make all actions
 
         boolean backToMenu;
 
