@@ -2,17 +2,17 @@
 
 package org.example;
 
-import java.util.ArrayList;
+
 
 class Animal extends Entity {//Animal class extends Entity class
     private String feedType;
-    private static int nextAnimalId = 1;//Anmial Id will start with 1 insead of 0
+    private static int nextAnimalId = 1;//Animal id will start with 1 instead of 0
 
 
-    public Animal(int id, String name, String feedType){//Constructor for animal Id , name and type of food they eat.
+    public Animal(int id, String name, String feedType){//Constructor for animal id , name and type of food they eat.
         super(id, name);
         this.feedType = feedType;
-        nextAnimalId++;//Increment the static Id for next animal
+        nextAnimalId++;//Increment the static id for next animal
     }
 
 

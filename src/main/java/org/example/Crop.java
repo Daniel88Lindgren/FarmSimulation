@@ -3,11 +3,11 @@
 package org.example;
 
 
-import java.util.ArrayList;
+
 
 class Crop extends Entity{//Crop class extends Entity class
 
-    private static int nextCropId = 1;//Anmial Id will start with 1 insead of 0
+    private static int nextCropId = 1;//Animal id will start with 1 instead of 0
     private int cropQuantity;
 
 
@@ -19,7 +19,7 @@ class Crop extends Entity{//Crop class extends Entity class
     public Crop(int id, String name, int cropQuantity){//Constructor for id, name and quantity
         super(id, name);
         this.cropQuantity = cropQuantity;
-        nextCropId++;//Increment the static Id for next crop
+        nextCropId++;//Increment the static id for next crop
     }
 
 

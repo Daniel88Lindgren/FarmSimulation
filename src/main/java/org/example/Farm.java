@@ -1,7 +1,6 @@
 package org.example;
 
-import javax.imageio.IIOException;
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,8 +13,8 @@ import java.util.Scanner;
 
     String userInput;
     Scanner scanner = new Scanner(System.in);
-     private ArrayList<Animal>animals;
-     private ArrayList<Crop>crops;
+     private final ArrayList<Animal>animals;
+     private final ArrayList<Crop>crops;
      private int nextAnimalId;
      private int nextCropId;
 
@@ -24,7 +23,7 @@ import java.util.Scanner;
     private void addAnimal(String name, String feedType){//Method to add animals to the farm when program starts
         Animal animal = new Animal(nextAnimalId , name, feedType);
         animals.add(animal);
-        nextAnimalId++;//Generates new Id every new add
+        nextAnimalId++;//Generates new id every new add
     }
 
 
@@ -44,7 +43,7 @@ import java.util.Scanner;
         else {//Animal name is unique , adding new animal to farm
             Animal animal = new Animal(nextAnimalId, name, feedType);
             animals.add(animal);
-            nextAnimalId++;//Generates new Id every new add
+            nextAnimalId++;//Generates new id every new add
 
         }
 
@@ -56,7 +55,7 @@ import java.util.Scanner;
     private void addCrop(String name, int cropQuantity){//Method to add crops when program starts
         Crop crop = new Crop(nextCropId, name, cropQuantity);
         crops.add(crop);
-        nextCropId++;//Generates new Id every new add
+        nextCropId++;//Generates new id every new add
     }
 
 
@@ -91,7 +90,7 @@ import java.util.Scanner;
         else {//Crop name is unique , adding new crop and quantity to farm
             Crop crop = new Crop(nextCropId, name, cropQuantity);
             crops.add(crop);
-            nextCropId++;//Generates new Id every new add
+            nextCropId++;//Generates new id every new add
         }
 
 
@@ -170,7 +169,7 @@ import java.util.Scanner;
 
             if (animalToRemove != null){//If name exists, animal removed from farm accepted
                 animals.remove(animalToRemove);
-                System.out.println("Animal: "+animalName+" has been removes from the farm!");
+                System.out.println(animalName+" has been removed from the farm!");
             }
             else{//If name doesn't exist, message and cancel
                 System.out.println(animalName + " could not been found at the farm. Please check spelling and right animal name and try again.");
