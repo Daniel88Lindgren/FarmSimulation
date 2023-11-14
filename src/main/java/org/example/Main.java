@@ -22,3 +22,6 @@ public class Main {
 //Look at all animals and what they are eating. Add new animals with a specific fed type to make the animal as happy as can be! You can also remove any animal from the farm.
 //If you have any future question or suggestions please report.
 
+
+
+
