@@ -99,7 +99,7 @@ import java.util.Scanner;
 
 
 
-    private void feedAnimal(String animalName){//Method so user can feed animal with crop. Input animal name then crop from menu.
+    private void feedAnimal(String animalName){//Method so user can feed animal with crop. Input animal name then crop from menu
         Animal animalToFeed = null;
         String feedType = null;
 
