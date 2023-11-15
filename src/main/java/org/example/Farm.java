@@ -44,6 +44,7 @@ import java.util.Scanner;
             Animal animal = new Animal(nextAnimalId, name, feedType);
             animals.add(animal);
             nextAnimalId++;//Generates new id every new add
+            System.out.println(name + " has been added to the farm! ");
 
         }
 
