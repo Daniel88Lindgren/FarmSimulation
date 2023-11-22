@@ -7,7 +7,7 @@ package org.example;
 
 class Crop extends Entity{//Crop class extends Entity class
 
-    private static int nextCropId = 1;//Animal id will start with 1 instead of 0
+
     private int cropQuantity;
 
 

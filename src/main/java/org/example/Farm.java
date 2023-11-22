@@ -181,12 +181,12 @@ import java.util.Scanner;
 
 
 
-     public void saveToFile() {
+     public void saveToFile() {//Method to save animals and crops to their files
          saveAnimalsToFile();
          saveCropsToFile();
      }
 
-     private void saveAnimalsToFile() {
+     private void saveAnimalsToFile() {//Method to save animals
          try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_animal_data.txt"))) {
              for (Animal animal : animals) {
                  bw.write(animal.getId() + "," + animal.getName() + "," + animal.getFeedType() + "\n");
@@ -196,7 +196,7 @@ import java.util.Scanner;
          }
      }
 
-     private void saveCropsToFile() {
+     private void saveCropsToFile() {//Method to save crops
          try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_crop_data.txt"))) {
              for (Crop crop : crops) {
                  bw.write(crop.getId() + "," + crop.getName() + "," + crop.getCropQuantity() + "\n");
@@ -208,8 +208,8 @@ import java.util.Scanner;
 
 
 
-     // Method to load animals from CSV file
-     public void loadAnimalsFromFile() {
+
+     public void loadAnimalsFromFile() {//Method to load animals from file
          try (BufferedReader br = new BufferedReader(new FileReader(farm_animal_data ))) {
              String line;
              while ((line = br.readLine()) != null) {
@@ -225,7 +225,7 @@ import java.util.Scanner;
      }
 
 
-     public void loadCropsFromFile() {
+     public void loadCropsFromFile() {//Method to load crops from file
          try (BufferedReader br = new BufferedReader(new FileReader(farm_crop_data))) {
              String line;
              while ((line = br.readLine()) != null) {
@@ -255,22 +255,7 @@ import java.util.Scanner;
 
 
 
-    /*public void setupFarm(){//Method to add pre-defined animals and crops
 
-        addAnimal("cow", "grass");
-        addAnimal("pig","all");
-        addAnimal("chicken","corn");
-        addAnimal("goat","corn");
-        addAnimal("horse","carrot");
-        addAnimal("duck","snail");
-
-        addCrop("corn",1);
-        addCrop("carrot",1);
-        addCrop("snail",1);
-        addCrop("grass",1);
-
-
-    }*/
 
 
 
