@@ -12,7 +12,7 @@ class Animal extends Entity {//Animal class extends Entity class
     public Animal(int id, String name, String feedType){//Constructor for animal id , name and type of food they eat.
         super(id, name);
         this.feedType = feedType;
-        nextAnimalId++;//Increment the static id for next animal
+        //nextAnimalId++;//Increment the static id for next animal
     }
 
 

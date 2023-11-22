@@ -1,0 +1,3 @@
+0,rabbit,carrot
+1,cow,grass
+2,monkey,banana

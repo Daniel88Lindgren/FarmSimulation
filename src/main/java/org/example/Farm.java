@@ -1,9 +1,7 @@
 package org.example;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,6 +9,8 @@ import java.util.Scanner;
 
  class Farm {
 
+    File farm_animal_data = new File("farm_animal_data.txt");
+    File farm_crop_data = new File("farm_crop_data.txt");
     String userInput;
     Scanner scanner = new Scanner(System.in);
      private final ArrayList<Animal>animals;
@@ -20,12 +20,12 @@ import java.util.Scanner;
 
 
 
-    private void addAnimal(String name, String feedType){//Method to add animals to the farm when program starts
-        Animal animal = new Animal(nextAnimalId , name, feedType);
-        animals.add(animal);
-        nextAnimalId++;//Generates new id every new add
-    }
 
+     public void addAnimal(String name, String feedType) {
+         Animal animal = new Animal(nextAnimalId, name, feedType);
+         animals.add(animal);
+         nextAnimalId++;  // Increment the ID for the next animal
+     }
 
 
     private void addAnimalByUser(String name,String feedType ){//Method so user can add animal. Name of animal input from menu
@@ -180,51 +180,82 @@ import java.util.Scanner;
 
 
 
-    private void saveToFile(String farmData){//Method to save all animals and crops to one data txt file.
 
-        try (FileWriter fileWriter = new FileWriter(farmData);//File writer for the specified file
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+     public void saveToFile() {
+         saveAnimalsToFile();
+         saveCropsToFile();
+     }
 
-            bufferedWriter.write("Animals: ");//Main name for all animals
-            bufferedWriter.newLine();
+     private void saveAnimalsToFile() {
+         try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_animal_data.txt"))) {
+             for (Animal animal : animals) {
+                 bw.write(animal.getId() + "," + animal.getName() + "," + animal.getFeedType() + "\n");
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
 
-            for (Animal animal : animals){//Loops through animal list and write their info/values to the file
-                bufferedWriter.write("Id: "+ animal.getId() + " -- Specie " + animal.getName() + " -- Eats: " + animal.getFeedType());
-                bufferedWriter.newLine();
-            }
-
-            bufferedWriter.write("Crops: ");//Main name for all crops
-            bufferedWriter.newLine();
-
-            for (Crop crop : crops){//Loops through crop list and write their info/values to the file
-                bufferedWriter.write("Id: " + crop.getId() + " -- Crop type: "+ crop.getName() + " -- Quantity: " + crop.getCropQuantity());
-                bufferedWriter.newLine();
-            }
-
-            System.out.println("All data has been saved successfully! Farm register filename: "+ farmData);//Message when done
-
-        }
-        catch (IOException e){//If file not found program will not crash
-            e.printStackTrace();
-        }
+     private void saveCropsToFile() {
+         try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_crop_data.txt"))) {
+             for (Crop crop : crops) {
+                 bw.write(crop.getId() + "," + crop.getName() + "," + crop.getCropQuantity() + "\n");
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
 
 
-    }
+
+     // Method to load animals from CSV file
+     public void loadAnimalsFromFile() {
+         try (BufferedReader br = new BufferedReader(new FileReader(farm_animal_data ))) {
+             String line;
+             while ((line = br.readLine()) != null) {
+                 String[] values = line.split(",");
+                 int id = Integer.parseInt(values[0]);
+                 String name = values[1];
+                 String feedType = values[2];
+                 addAnimal(name, feedType);
+             }
+         } catch (IOException e) {
+             System.out.println("Error reading the file: " + e.getMessage());
+         }
+     }
+
+
+     public void loadCropsFromFile() {
+         try (BufferedReader br = new BufferedReader(new FileReader(farm_crop_data))) {
+             String line;
+             while ((line = br.readLine()) != null) {
+                 String[] values = line.split(",");
+                 int id = Integer.parseInt(values[0]);
+                 String name = values[1];
+                 int cropQuantity = Integer.parseInt(values[2]);
+                 addCrop(name, cropQuantity);
+             }
+         } catch (IOException e) {
+             System.out.println("Error reading the file: " + e.getMessage());
+         }
+     }
+
+
+
 
 
 
      public Farm(){//Constructor for farm class
-         animals = new ArrayList<>();
-         crops = new ArrayList<>();
-         nextAnimalId = 1;
-         nextCropId = 1;
-
+         this.animals = new ArrayList<>();
+         this.crops = new ArrayList<>();
+         loadAnimalsFromFile();
+         loadCropsFromFile();
 
      }
 
 
 
-    public void setupFarm(){//Method to add pre-defined animals and crops
+    /*public void setupFarm(){//Method to add pre-defined animals and crops
 
         addAnimal("cow", "grass");
         addAnimal("pig","all");
@@ -239,7 +270,7 @@ import java.util.Scanner;
         addCrop("grass",1);
 
 
-    }
+    }*/
 
 
 
@@ -318,7 +349,7 @@ import java.util.Scanner;
                     String removeAnimalByUser = scanner.next().toLowerCase();
                     removeAnimal(removeAnimalByUser);
                     break;
-                case "8":saveToFile("farmData.txt");
+                case "8":saveToFile();
                     break;
                 case "10":backToMenu = true;
                     break;

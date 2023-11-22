@@ -19,7 +19,7 @@ class Crop extends Entity{//Crop class extends Entity class
     public Crop(int id, String name, int cropQuantity){//Constructor for id, name and quantity
         super(id, name);
         this.cropQuantity = cropQuantity;
-        nextCropId++;//Increment the static id for next crop
+        //nextCropId++;//Increment the static id for next crop
     }
 
 
@@ -40,6 +40,7 @@ class Crop extends Entity{//Crop class extends Entity class
 
         return "Id: "+ getId() + " <> Crop type: " + getName() + " <> Quantity: "+cropQuantity;
     }
+
 
 
 }
