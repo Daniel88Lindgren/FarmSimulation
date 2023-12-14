@@ -4,8 +4,8 @@ package org.example;
 
 
 
-
-class Crop extends Entity{//Crop class extends Entity class
+//Crop class extends Entity class
+class Crop extends Entity{
 
 
     private int cropQuantity;
@@ -16,14 +16,15 @@ class Crop extends Entity{//Crop class extends Entity class
     }
 
 
-    public Crop(int id, String name, int cropQuantity){//Constructor for id, name and quantity
+    //Constructor for id, name and quantity
+    public Crop(int id, String name, int cropQuantity){
         super(id, name);
         this.cropQuantity = cropQuantity;
-        //nextCropId++;//Increment the static id for next crop
     }
 
 
-    public void decrementCropQuantity(){//Method to decrease quantity by 1 IF quantity is greater than 0
+    //Method to decrease quantity by 1 IF quantity is greater than 0
+    public void decrementCropQuantity(){
         if (cropQuantity > 0){
             cropQuantity--;
         }
@@ -35,8 +36,9 @@ class Crop extends Entity{//Crop class extends Entity class
     }
 
 
+    //Method override form Entity to display crop info.
     @Override
-    public String getDescription(){//Method override form Entity to display crop info.
+    public String getDescription(){
 
         return "Id: "+ getId() + " <> Crop type: " + getName() + " <> Quantity: "+cropQuantity;
     }

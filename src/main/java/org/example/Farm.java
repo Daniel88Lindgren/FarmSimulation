@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 
 
-
+    //Method to add animals
      public void addAnimal(String name, String feedType) {
          Animal animal = new Animal(nextAnimalId, name, feedType);
          animals.add(animal);
@@ -28,22 +28,27 @@ import java.util.Scanner;
      }
 
 
-    private void addAnimalByUser(String name,String feedType ){//Method so user can add animal. Name of animal input from menu
+     //Method for user to add animal. Name of animal input from menu
+    private void addAnimalByUser(String name,String feedType ){
         boolean animalExists = false;
 
-        for (Animal existingAnimal : animals){//Checking if new name of animal already exists on farm
+        //Checking if new name of animal already exists on farm
+        for (Animal existingAnimal : animals){
             if (existingAnimal.getName().equals(name)){
                 animalExists = true;
                 break;
             }
         }
-        if (animalExists){//If animal name is same as on farm, message and cancel adding
+        //If animal name is same as on farm, message and cancel adding
+        if (animalExists){
             System.out.println("That specie already exist on the farm! Adding animal denied");
         }
-        else {//Animal name is unique , adding new animal to farm
+        //Animal name is unique , adding new animal to farm
+        else {
             Animal animal = new Animal(nextAnimalId, name, feedType);
             animals.add(animal);
-            nextAnimalId++;//Generates new id every new add
+            //Generates new id every new add
+            nextAnimalId++;
             System.out.println(name + " has been added to the farm! ");
 
         }
@@ -52,30 +57,34 @@ import java.util.Scanner;
     }
 
 
-
-    private void addCrop(String name, int cropQuantity){//Method to add crops when program starts
+     //Method to add crops when program starts
+    private void addCrop(String name, int cropQuantity){
         Crop crop = new Crop(nextCropId, name, cropQuantity);
         crops.add(crop);
-        nextCropId++;//Generates new id every new add
+        //Generates new id every new add
+        nextCropId++;
     }
 
 
-
-    private void addCropByUser(String name, int cropQuantity){//Method so user can add crops. Name and quantity input from menu
+     //Method so user can add crops. Name and quantity input from menu
+    private void addCropByUser(String name, int cropQuantity){
 
         boolean cropExists = false;
-        for (Crop existingCrop : crops){//Checking if new name of crop already exists on the farm
+        //Checking if new name of crop already exists on the farm
+        for (Crop existingCrop : crops){
             if (existingCrop.getName().equals(name)){
                 cropExists = true;
                 break;
             }
         }
 
-        if (cropExists){//If the new name exists give user a second choice
+        //If the new name exists give user a second choice
+        if (cropExists){
             System.out.println("This crop already exists in the farm! Would you like to add more quantity instead? [yes/no]");
             String choice = scanner.next().toLowerCase();
 
-            if (choice.equalsIgnoreCase("yes")){//User input "yes" quantity adjusted after users number input
+            //User input "yes" quantity adjusted after users number input
+            if (choice.equalsIgnoreCase("yes")){
                 for (Crop existingCrop : crops){
                     if (existingCrop.getName().equals(name)){
                         existingCrop.setCropQuantity(existingCrop.getCropQuantity() + cropQuantity);
@@ -84,14 +93,17 @@ import java.util.Scanner;
                     }
                 }
             }
+            //User input "no" canceling quantity add
             else {
-                System.out.println("No changes is made");//User input "no" canceling quantity add
+                System.out.println("No changes is made");
             }
         }
-        else {//Crop name is unique , adding new crop and quantity to farm
+        //Crop name is unique , adding new crop and quantity to farm
+        else {
             Crop crop = new Crop(nextCropId, name, cropQuantity);
             crops.add(crop);
-            nextCropId++;//Generates new id every new add
+            //Generates new id every new add
+            nextCropId++;
         }
 
 
@@ -99,18 +111,21 @@ import java.util.Scanner;
 
 
 
-    private void feedAnimal(String animalName){//Method so user can feed animal with crop. Input animal name then crop from menu
+     //Method so user can feed animal with crop. Input animal name then crop from menu
+    private void feedAnimal(String animalName){
         Animal animalToFeed = null;
         String feedType = null;
 
-        for (Animal animal : animals){//Checks if input animal name exists on farm.
+        //Checks if input animal name exists on farm.
+        for (Animal animal : animals){
             if (animal.getName().equals(animalName)){
                 animalToFeed = animal;
                 feedType = animal.getFeedType();
                 break;
             }
         }
-        if (animalToFeed == null){//If input animal name not exist, message and cancel.
+        //If input animal name not exist, message and cancel.
+        if (animalToFeed == null){
             System.out.println("Animal not found");
         }
         else{
@@ -124,55 +139,63 @@ import java.util.Scanner;
                 }
                 System.out.println("There are no crops available for the pig");
             }
-            for (Crop crop : crops){//Loops through crops to find matching feed type AND if the crop quantity is greater than 0, then message accepted feed
+            //Loops through crops to find matching feed type AND if the crop quantity is greater than 0, then message accepted feed
+            for (Crop crop : crops){
                 if (crop.getName().equals(feedType) && crop.getCropQuantity() > 0){
                     crop.decrementCropQuantity();
                     System.out.println(animalName + " has been fed with "+feedType+". The animal is now well fed and happy!");
                     return;
                 }
             }
-            System.out.println("Not enough "+feedType+" to feed "+animalName+"\nTry fill upp the crop you want to feed the animal with. The " + animalName + " is getting really hungry!");//If requirement not met, message and cancel.
+            //If requirement not met, message and cancel.
+            System.out.println("Not enough "+feedType+" to feed "+animalName+"\nTry fill upp the crop you want to feed the animal with. The " + animalName + " is getting really hungry!");
         }
     }
 
 
-
-    private void removeCrop(String cropName){//Method so user can remove crops. Name input from menu
+     //Method so user can remove crops. Name input from menu
+    private void removeCrop(String cropName){
         Crop cropToRemove = null;
 
-        for (Crop crop : crops){//Checks if input name exists on farm
+        //Checks if input name exists on farm
+        for (Crop crop : crops){
             if (crop.getName().equals(cropName)){
                 cropToRemove = crop;
                 break;
             }
         }
 
-        if (cropToRemove != null){//If name exists, crop removed from farm accepted
+        //If name exists, crop removed from farm accepted
+        if (cropToRemove != null){
             crops.remove(cropToRemove);
             System.out.println("Crop: "+ cropName + " has been removed form the farm!");
         }
-        else {//If name doesn't exist, message and cancel
+        //If name doesn't exist, message and cancel
+        else {
             System.out.println(cropName + " could not been found on the farm. Please check spelling and right crop name and try again.");
         }
     }
 
 
-
-    private void removeAnimal(String animalName){//Method so user can remove animals. Name input from menu
+     //Method so user can remove animals. Name input from menu
+    private void removeAnimal(String animalName){
         Animal animalToRemove = null;
 
-        for (Animal animal : animals) {//Check if input name exist on farm
+        //Check if input name exist on farm
+        for (Animal animal : animals) {
             if (animal.getName().equals(animalName)) {
                 animalToRemove = animal;
                 break;
             }
         }
 
-            if (animalToRemove != null){//If name exists, animal removed from farm accepted
+             //If name exists, animal removed from farm accepted
+            if (animalToRemove != null){
                 animals.remove(animalToRemove);
                 System.out.println(animalName+" has been removed from the farm!");
             }
-            else{//If name doesn't exist, message and cancel
+            //If name doesn't exist, message and cancel
+            else{
                 System.out.println(animalName + " could not been found at the farm. Please check spelling and right animal name and try again.");
             }
 
@@ -180,13 +203,14 @@ import java.util.Scanner;
 
 
 
-
-     public void saveToFile() {//Method to save animals and crops to their files
+     //Method to save animals and crops to their files
+     public void saveToFile() {
          saveAnimalsToFile();
          saveCropsToFile();
      }
 
-     private void saveAnimalsToFile() {//Method to save animals
+     //Method to save animals
+     private void saveAnimalsToFile() {
          try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_animal_data.txt"))) {
              for (Animal animal : animals) {
                  bw.write(animal.getId() + "," + animal.getName() + "," + animal.getFeedType() + "\n");
@@ -196,7 +220,8 @@ import java.util.Scanner;
          }
      }
 
-     private void saveCropsToFile() {//Method to save crops
+     //Method to save crops
+     private void saveCropsToFile() {
          try (BufferedWriter bw = new BufferedWriter(new FileWriter("farm_crop_data.txt"))) {
              for (Crop crop : crops) {
                  bw.write(crop.getId() + "," + crop.getName() + "," + crop.getCropQuantity() + "\n");
@@ -208,8 +233,8 @@ import java.util.Scanner;
 
 
 
-
-     public void loadAnimalsFromFile() {//Method to load animals from file
+     //Method to load animals from file
+     public void loadAnimalsFromFile() {
          try (BufferedReader br = new BufferedReader(new FileReader(farm_animal_data ))) {
              String line;
              while ((line = br.readLine()) != null) {
@@ -224,8 +249,8 @@ import java.util.Scanner;
          }
      }
 
-
-     public void loadCropsFromFile() {//Method to load crops from file
+     //Method to load crops from file
+     public void loadCropsFromFile() {
          try (BufferedReader br = new BufferedReader(new FileReader(farm_crop_data))) {
              String line;
              while ((line = br.readLine()) != null) {
@@ -244,8 +269,8 @@ import java.util.Scanner;
 
 
 
-
-     public Farm(){//Constructor for farm class
+     //Constructor for farm class
+     public Farm(){
          this.animals = new ArrayList<>();
          this.crops = new ArrayList<>();
          loadAnimalsFromFile();
@@ -258,8 +283,8 @@ import java.util.Scanner;
 
 
 
-
-     public void menu(){//This is where the user enter the program and will make all actions
+     //This is where the user enter the program and will make all actions
+     public void menu(){
 
         boolean backToMenu;
 

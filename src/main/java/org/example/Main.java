@@ -11,11 +11,6 @@ public class Main {
     }
 }
 
-//READ TEXT BELOW!
-
-//The simulator were supposed to be a VG task but i didn't get all code right in different classes so this is a G task with some more advanced code in it.
-
-
 //Welcome to the adventure of Farm Simulator!
 //In this program you can make different actions from the menu such as:
 //Look at all crops and their quantity, Add new crops with a specified amount. You can also remove an unnecessary crop from the farm.

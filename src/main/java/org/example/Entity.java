@@ -1,13 +1,15 @@
 package org.example;
 
 
- class Entity {//Base class for entities on farm
+//Base class for entities on farm
+ class Entity {
 
     public int id;
     protected String name;
 
 
-    public Entity(int id, String name){//Constructor for id and name
+    //Constructor for id and name
+    public Entity(int id, String name){
         this.id = id;
         this.name = name;
     }
