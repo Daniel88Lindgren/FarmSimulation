@@ -1,1 +1,1 @@
-Information can be found in the docx file
+Information about the project is found in the docx file
